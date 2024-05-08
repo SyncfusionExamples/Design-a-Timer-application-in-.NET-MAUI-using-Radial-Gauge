@@ -23,7 +23,7 @@
                     </picker:SfTimePicker.ColumnHeaderView>
                 </picker:SfTimePicker>
                 </Border>
-                <Button Text="Start Timer" CornerRadius="10"  Margin="0,20,0,0" VerticalOptions="Center" IsEnabled="{Binding IsStartButtonEnabled}" Command="{Binding StartButtonCommand}"/>
+                <Button Text="Start Timer" CornerRadius="10" HeightRequest="40"  Margin="10,20,10,0" VerticalOptions="Center" IsEnabled="{Binding IsStartButtonEnabled}" Command="{Binding StartButtonCommand}"/>
         </VerticalStackLayout>
         </Frame>
         <Frame CornerRadius="10" Margin="0,10,0,0"  Background="#E8E4FF" VerticalOptions="Center" BorderColor="Transparent" IsVisible="{Binding RadialGaugeIsVisible}">
@@ -47,7 +47,7 @@
                                     <gauge:GaugeAnnotation >
                                         <gauge:GaugeAnnotation.Content>
                                             <VerticalStackLayout>
-                                                <Label Text="Timer"/>
+                                                <Label Text="Timer" HorizontalOptions="Center"/>
                                                 <Label Text="{Binding TimerModel.TimerTime}" 
                                        FontSize="22"
                                            TextColor="Black"
@@ -73,8 +73,8 @@
                     </gauge:SfRadialGauge>
                 </Border>
                 <Grid ColumnDefinitions="0.5*,0.5*" Margin="0,20,0,0">
-                <Button Text="Cancel" CornerRadius="10" Background="#6750A4" WidthRequest="80" HeightRequest="40" Command="{Binding CancelButtonCommand}"/>
-                <Button Text="{Binding ButtonText}" Background="#6750A4" WidthRequest="80" HeightRequest="40"  Grid.Column="1"  CornerRadius="10" Command="{Binding PauseButtonCommand}"/>
+                <Button Text="Cancel" CornerRadius="10" Background="#6750A4" WidthRequest="85" HeightRequest="40" Command="{Binding CancelButtonCommand}"/>
+                <Button Text="{Binding ButtonText}" Background="#6750A4" WidthRequest="85" HeightRequest="40"  Grid.Column="1"  CornerRadius="10" Command="{Binding PauseButtonCommand}"/>
             </Grid>
 
         </VerticalStackLayout>
