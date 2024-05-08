@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+             xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+             xmlns:local="clr-namespace:TimerApplication"
+             x:Class="TimerApplication.MainPage">
+    <ContentPage.BindingContext>
+        <local:TimerViewModel/>
+    </ContentPage.BindingContext>
+    <Grid WidthRequest="300" VerticalOptions="Center" HeightRequest="500">
+        <Frame CornerRadius="10" VerticalOptions="Center" Background="#E8E4FF" BorderColor="Transparent" IsVisible="{Binding PickerIsVisible}">
+        <VerticalStackLayout VerticalOptions="Center">
+                <Border StrokeShape="RoundRectangle 5,5,5,5" Stroke="LightGray">
+                <picker:SfTimePicker Background="#E8E4FF" HorizontalOptions="Fill" SelectedTime="{Binding TimerModel.SelectedTime,Mode=TwoWay}">
+                    <picker:SfTimePicker.HeaderView >
+                            <picker:PickerHeaderView Background="#E8E4FF" Height="40" Text="Time Picker">
+                        </picker:PickerHeaderView>
+                    </picker:SfTimePicker.HeaderView>
+                    <picker:SfTimePicker.ColumnHeaderView >
+                        <picker:TimePickerColumnHeaderView Background="#E8E4FF">
+                        </picker:TimePickerColumnHeaderView>
+                    </picker:SfTimePicker.ColumnHeaderView>
+                </picker:SfTimePicker>
+                </Border>
+                <Button Text="Start Timer" CornerRadius="10"  Margin="0,10,0,0" VerticalOptions="Center" IsEnabled="{Binding IsStartButtonEnabled}" Command="{Binding StartButtonCommand}"/>
+        </VerticalStackLayout>
+        </Frame>
+        <Frame CornerRadius="10" Margin="0,10,0,0"  Background="#E8E4FF" VerticalOptions="Center" BorderColor="Transparent" IsVisible="{Binding RadialGaugeIsVisible}">
+        <VerticalStackLayout>
+                <Border StrokeShape="RoundRectangle 5,5,5,5" Stroke="LightGray" HeightRequest="300">
+                    <gauge:SfRadialGauge Background="#E8E4FF" VerticalOptions="Center">
+                        <gauge:SfRadialGauge.Axes>
+                            <gauge:RadialAxis ShowLabels="False"  
+                                  StartAngle="270"
+                                  EndAngle="270"
+                                  ShowAxisLine="False"
+                                  ShowTicks="False">
+
+                                <gauge:RadialAxis.Pointers>
+                                    <gauge:RangePointer Value="100" Fill="#EEEEEE"
+             CornerStyle="BothCurve"   PointerWidth="14"/>
+                                    <gauge:RangePointer Value="{Binding TimerModel.TimerPointerValue}"
+             CornerStyle="BothCurve"  Fill="#6750A4"   PointerWidth="14" />
+                                </gauge:RadialAxis.Pointers>
+                                <gauge:RadialAxis.Annotations>
+                                    <gauge:GaugeAnnotation >
+                                        <gauge:GaugeAnnotation.Content>
+                                            <Label Text="{Binding TimerModel.TimerTime}" 
+                                       FontSize="22"
+                                           TextColor="Black"
+                                       FontAttributes="Bold" />
+
+                                        </gauge:GaugeAnnotation.Content>
+                                    </gauge:GaugeAnnotation>
+                                    <gauge:GaugeAnnotation DirectionUnit="Angle"
+                                       DirectionValue="90"
+                                       PositionFactor="0.8"
+                                       VerticalAlignment="Start">
+                                        <gauge:GaugeAnnotation.Content>
+                                            <HorizontalStackLayout BindingContext="{Binding}" IsVisible="{Binding IsReminderTimeVisible}" >
+                                                <Image Background="#E8E4FF" Source="notification.png" Margin="0,0,0,5"  HeightRequest="30" WidthRequest="30" />
+                                                <Label Text="{Binding TimerModel.ReminderTime}" HorizontalOptions="Start" VerticalOptions="Center"  />
+                                            </HorizontalStackLayout>
+                                        </gauge:GaugeAnnotation.Content>
+                                    </gauge:GaugeAnnotation>
+                                </gauge:RadialAxis.Annotations>
+                            </gauge:RadialAxis>
+                        </gauge:SfRadialGauge.Axes>
+                    </gauge:SfRadialGauge>
+                </Border>
+                <Grid ColumnDefinitions="0.5*,0.5*" Margin="0,20,0,0">
+                <Button Text="Cancel" CornerRadius="10" Background="#6750A4" WidthRequest="80" HeightRequest="30" Command="{Binding CancelButtonCommand}"/>
+                <Button Text="{Binding ButtonText}" Background="#6750A4" WidthRequest="80" HeightRequest="30"  Grid.Column="1"  CornerRadius="10" Command="{Binding PauseButtonCommand}"/>
+            </Grid>
+
+        </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
