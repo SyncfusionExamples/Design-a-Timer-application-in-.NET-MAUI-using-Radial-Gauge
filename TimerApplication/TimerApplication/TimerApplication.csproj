@@ -60,11 +60,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.2.3" />
 		<PackageReference Include="Syncfusion.Maui.Picker" Version="25.1.41" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\Volume2\gauge\maui-gauges\maui\src\gauges\Syncfusion.Maui.Gauges.csproj" />
 	</ItemGroup>
 
 </Project>
