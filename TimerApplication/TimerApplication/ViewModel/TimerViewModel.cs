@@ -150,7 +150,6 @@ namespace TimerApplication
         {
             this.TimerModel.TimerPointerValue = 100;
             this.IsReminderTimeVisible = true;
-            this.TimerModel.Time = this.TimerModel.SelectedTime;
             this.timerTick = this.TimerModel.SelectedTime;
             this.TimerModel.TimerTime = this.TimerModel.SelectedTime.ToString(@"hh\:mm\:ss");
             this.ButtonText = "Pause";
@@ -163,14 +162,14 @@ namespace TimerApplication
             }
         }
 
-        internal void StartTimer()
+        private void StartTimer()
         {
-            this.TimerModel.ReminderTime = DateTime.Now.AddSeconds(this.TimerModel.Time.TotalSeconds).ToShortTimeString();
+            this.TimerModel.ReminderTime = DateTime.Now.AddSeconds(this.TimerModel.SelectedTime.TotalSeconds).ToShortTimeString();
             if (!this.timer.IsRunning)
                 this.timer?.Start();
         }
 
-        internal void StopTimer()
+        private void StopTimer()
         {
             if (this.timer.IsRunning)
                 this.timer?.Stop();
@@ -181,7 +180,7 @@ namespace TimerApplication
             if (timerTick > TimeSpan.Zero)
             {
                 timerTick = timerTick.Subtract(new TimeSpan(0, 0, 1));
-                var time = (timerTick / this.TimerModel.Time) * 100;
+                var time = (timerTick / this.TimerModel.SelectedTime) * 100;
                 this.TimerModel.TimerPointerValue = time;
                 this.TimerModel.TimerTime = timerTick.ToString(@"hh\:mm\:ss");
             }
