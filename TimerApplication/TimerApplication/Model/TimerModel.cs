@@ -6,7 +6,6 @@ namespace TimerApplication
     {
         private string reminderTime;
         private string timerTime;
-        private TimeSpan time;
         private double timerPointerValue;
         private TimeSpan selectedTime;
 
@@ -15,6 +14,7 @@ namespace TimerApplication
             this.reminderTime = string.Empty; 
             this.timerTime = string.Empty;  
             this.selectedTime = new TimeSpan(0, 0, 0);
+            this.timerPointerValue = 0;
         }
 
         public TimeSpan SelectedTime
@@ -52,19 +52,6 @@ namespace TimerApplication
             {
                 timerTime = value;
                 this.OnPropertyChanged(nameof(TimerTime));
-            }
-        }
-
-        public TimeSpan Time
-        {
-            get
-            {
-                return time;
-            }
-            set
-            {
-                time = value;   
-                this.OnPropertyChanged(nameof(Time));   
             }
         }
 
