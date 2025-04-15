@@ -7,12 +7,11 @@ namespace TimerApplication
         public App()
         {
             InitializeComponent();
-            MainPage = new MainPage();
         }
 
-        protected override Window CreateWindow(IActivationState activationState)
+        protected override Window CreateWindow(IActivationState? activationState)
         {
-            var window = base.CreateWindow(activationState);
+            var window = new Window(new MainPage());
             window.Height = 600;
             return window;
         }

@@ -9,11 +9,11 @@ namespace TimerApplication
 
         private TimeSpan timerTick;
 
-        private IDispatcherTimer timer;
+        private IDispatcherTimer? timer;
 
-        private string buttonText;
+        private string buttonText = string.Empty;
 
-        private bool gaugeIsVisible, pickerIsVisible , isStartButtonEnabled, isReminderTimeVisible;
+        private bool gaugeIsVisible, pickerIsVisible, isStartButtonEnabled, isReminderTimeVisible;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -115,7 +115,7 @@ namespace TimerApplication
             if (e.PropertyName != nameof(TimerModel.SelectedTime))
                 return;
 
-            this.IsStartButtonEnabled = TimerModel.SelectedTime > TimeSpan.Zero ? true:false;
+            this.IsStartButtonEnabled = TimerModel.SelectedTime > TimeSpan.Zero ? true : false;
         }
 
         private void OnCancelButtonClick()
@@ -165,14 +165,14 @@ namespace TimerApplication
         private void StartTimer()
         {
             this.TimerModel.ReminderTime = DateTime.Now.AddSeconds(this.TimerModel.SelectedTime.TotalSeconds).ToShortTimeString();
-            if (!this.timer.IsRunning)
-                this.timer?.Start();
+            if (this.timer != null && !this.timer.IsRunning)
+                this.timer.Start();
         }
 
         private void StopTimer()
         {
-            if (this.timer.IsRunning)
-                this.timer?.Stop();
+            if (this.timer != null && this.timer.IsRunning)
+                this.timer.Stop();
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
