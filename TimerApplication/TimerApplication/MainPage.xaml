@@ -4,12 +4,13 @@
              xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
              xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
              xmlns:local="clr-namespace:TimerApplication"
+             x:DataType="local:TimerViewModel"
              x:Class="TimerApplication.MainPage">
     <ContentPage.BindingContext>
         <local:TimerViewModel/>
     </ContentPage.BindingContext>
     <Grid WidthRequest="300" VerticalOptions="Center" >
-        <Frame CornerRadius="10" VerticalOptions="Center" Background="#E8E4FF" BorderColor="Transparent" IsVisible="{Binding PickerIsVisible}">
+        <Border StrokeShape="RoundRectangle 10,10,10,10" Padding="20" VerticalOptions="Center" Background="#E8E4FF" Stroke="Transparent" IsVisible="{Binding PickerIsVisible}">
         <VerticalStackLayout VerticalOptions="Center">
                 <Border StrokeShape="RoundRectangle 5,5,5,5" Stroke="LightGray">
                 <picker:SfTimePicker Background="#E8E4FF" HorizontalOptions="Fill" SelectedTime="{Binding TimerModel.SelectedTime,Mode=TwoWay}">
@@ -25,8 +26,8 @@
                 </Border>
                 <Button Text="Start Timer" CornerRadius="10" HeightRequest="40"  Margin="10,20,10,0" VerticalOptions="Center" IsEnabled="{Binding IsStartButtonEnabled}" Command="{Binding StartButtonCommand}"/>
         </VerticalStackLayout>
-        </Frame>
-        <Frame CornerRadius="10" Margin="0,10,0,0"  Background="#E8E4FF" VerticalOptions="Center" BorderColor="Transparent" IsVisible="{Binding RadialGaugeIsVisible}">
+        </Border>
+        <Border StrokeShape="RoundRectangle 10,10,10,10" Padding="20" Margin="0,10,0,0"  Background="#E8E4FF" VerticalOptions="Center" Stroke="Transparent" IsVisible="{Binding RadialGaugeIsVisible}">
         <VerticalStackLayout>
                 <Border StrokeShape="RoundRectangle 5,5,5,5" Stroke="LightGray" >
                     <gauge:SfRadialGauge Background="#E8E4FF">
@@ -78,6 +79,6 @@
             </Grid>
 
         </VerticalStackLayout>
-        </Frame>
+        </Border>
     </Grid>
 </ContentPage>
